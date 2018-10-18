@@ -5,7 +5,7 @@ import java.lang.Math;
 
 public class REPL {
     public static void main(String[] args) {
-
+        System.out.println("REPL");
         Scanner scan = new Scanner(System.in);
         while (true) {
             System.out.print("> ");
@@ -28,6 +28,17 @@ public class REPL {
                     System.out.println("usage: lcm [factor] [factor]");
                 } else {
                     System.out.println(lcm(Integer.valueOf(arguments[1]), Integer.valueOf(arguments[2])));
+                }
+            }
+            else if (arguments[0].equals("sleep")) {
+                if (arguments.length != 2 || !isDouble(arguments[1])) {
+                    System.out.println("usage: sleep [seconds]");
+                } else {
+                    try {
+                        Thread.sleep((int) (Double.parseDouble(arguments[1]) * 1000));
+                    } catch (InterruptedException e) {
+                        //
+                    }
                 }
             }
             else if (arguments[0].equals("clear")) {
@@ -54,6 +65,15 @@ public class REPL {
     private static boolean isInteger(String integer) {
         try {
             Integer.valueOf(integer);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean isDouble(String doub) {
+        try {
+            Double.parseDouble(doub);
         } catch (NumberFormatException e) {
             return false;
         }
