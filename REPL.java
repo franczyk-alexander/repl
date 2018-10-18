@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.Arrays;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.lang.Math;
 
 public class REPL {
@@ -16,7 +17,17 @@ public class REPL {
                 break;
             }
 
-            if (arguments[0].equals("gcf")) {
+            if (arguments[0].equals("help")) {
+                System.out.println(
+                    "exit\n" +
+                    "gcf\n" +
+                    "lcm\n" +
+                    "sleep\n" +
+                    "isInteger\n" +
+                    "isDouble"
+                );
+            }
+            else if (arguments[0].equals("gcf")) {
                 if (arguments.length != 3 || !isInteger(arguments[1]) || !isInteger(arguments[2])) {
                     System.out.println("usage: gcf [multiple] [multiple]");
                 } else {
@@ -39,6 +50,20 @@ public class REPL {
                     } catch (InterruptedException e) {
                         //
                     }
+                }
+            }
+            else if (arguments[0].equals("isInteger")) {
+                if (arguments.length != 2) {
+                    System.out.println("usage: isInteger [token]");
+                } else {
+                    System.out.println(isInteger(arguments[1]));
+                }
+            }
+            else if (arguments[0].equals("isDouble")) {
+                if (arguments.length != 2) {
+                    System.out.println("usage: isDouble [token]");
+                } else {
+                    System.out.println(isDouble(arguments[1]));
                 }
             }
             else if (arguments[0].equals("clear")) {
